@@ -3,7 +3,8 @@ import './App.scss';
 import axios from 'axios';
 
 import FriendsList from './components/FriendsList';
-import FriendsForm from './components/FriendsForm';
+import POSTFriendsForm from './components/POSTFriendsForm';
+
 
 class App extends React.Component {
   constructor(){
@@ -32,11 +33,21 @@ class App extends React.Component {
         .catch(err => console.log(err))  
   }
 
+  updateFriend = (id, updateFriend) => {
+    axios 
+      .put(`http://localhost:5000/friends${id}`, updateFriend)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
+  }
+
+
   render(){
     return (
       <div className="App">
-        <FriendsList friends={this.state.friends} />
-        <FriendsForm addNewFriend={this.addNewFriend} />
+        <FriendsList friends={this.state.friends} updateFriend={this.updateFriend}/>
+        <POSTFriendsForm addNewFriend={this.addNewFriend} />
       </div>
     );
   }

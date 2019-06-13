@@ -1,11 +1,11 @@
 import React from 'react';
 
-class FriendsForm extends React.Component{
+class PUTFriendsForm extends React.Component{
     constructor(props){
         super(props);
         console.log(props)
         this.state={
-            newFriend: {
+            updateFriend: {
                 name: '',
                 age: '',
                 email:''
@@ -16,45 +16,45 @@ class FriendsForm extends React.Component{
     handleChange = e => {
         this.setState({
             newFriend: {
-                ...this.state.newFriend,
+                ...this.state.updateFriend,
                 [e.target.name]: e.target.value
             }
         }) 
     }
 
-    addNewFriend = e => {
-        // e.preventDefault();
-        this.props.addNewFriend(this.state.newFriend); 
+    updateFriend = e => {
+        e.preventDefault();
+        this.props.updateFriend(1, this.state.updateFriend); 
     }
 
     render(){
         return (
-            <form className='form' onSubmit={this.addNewFriend}>
+            <form className='form' onSubmit={this.updateFriend}>
                 <input 
                     type='text'
                     name='name'
                     placeholder='name'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.name}
+                    value={this.state.updateFriend.name}
                 />
                 <input 
                     type='text'
                     name='age'
                     placeholder='age'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.age}
+                    value={this.state.updateFriend.age}
                 />
                 <input 
                     type='text'
                     name='email'
                     placeholder='email'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.email}
+                    value={this.state.updateFriend.email}
                 />
-                <button type='submit'>Add New Friend</button>
+                <button type='submit'>Update</button>
             </form>
         );
     }
 };
 
-export default FriendsForm; 
+export default PUTFriendsForm; 
