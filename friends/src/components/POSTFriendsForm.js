@@ -3,9 +3,8 @@ import React from 'react';
 class POSTFriendsForm extends React.Component{
     constructor(props){
         super(props);
-        console.log(props)
         this.state={
-            newFriend: {
+            friend: {
                 name: '',
                 age: '',
                 email:''
@@ -15,16 +14,17 @@ class POSTFriendsForm extends React.Component{
 
     handleChange = e => {
         this.setState({
-            newFriend: {
-                ...this.state.newFriend,
+            friend: {
+                ...this.state.friend,
                 [e.target.name]: e.target.value
             }
         }) 
     }
 
     addNewFriend = e => {
-        // e.preventDefault();
-        this.props.addNewFriend(this.state.newFriend); 
+        e.preventDefault();
+        console.log(e)
+        this.props.addNewFriend(this.state.friend); 
     }
 
     render(){
@@ -35,21 +35,21 @@ class POSTFriendsForm extends React.Component{
                     name='name'
                     placeholder='name'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.name}
+                    value={this.state.friend.name}
                 />
                 <input 
                     type='text'
                     name='age'
                     placeholder='age'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.age}
+                    value={this.state.friend.age}
                 />
                 <input 
                     type='text'
                     name='email'
                     placeholder='email'
                     onChange={this.handleChange}
-                    value={this.state.newFriend.email}
+                    value={this.state.friend.email}
                 />
                 <button type='submit'>Add New Friend</button>
             </form>

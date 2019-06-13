@@ -9,27 +9,30 @@ class PUTFriendsForm extends React.Component{
                 name: '',
                 age: '',
                 email:''
-            } 
-        }
+            }
+        } 
     };
+
+    componentDidUpdate(prevProps) {
+        
+        if (this.props.activeFriend !== prevProps.activeFriend){
+            this.setState({updateFriend: this.props.activeFriend});
+        }
+ 
+    }
 
     handleChange = e => {
         this.setState({
-            newFriend: {
+            updateFriend: {
                 ...this.state.updateFriend,
                 [e.target.name]: e.target.value
             }
         }) 
     }
 
-    updateFriend = e => {
-        e.preventDefault();
-        this.props.updateFriend(1, this.state.updateFriend); 
-    }
-
     render(){
         return (
-            <form className='form' onSubmit={this.updateFriend}>
+            <form className='form' >
                 <input 
                     type='text'
                     name='name'
@@ -37,7 +40,7 @@ class PUTFriendsForm extends React.Component{
                     onChange={this.handleChange}
                     value={this.state.updateFriend.name}
                 />
-                <input 
+                <input
                     type='text'
                     name='age'
                     placeholder='age'

@@ -1,5 +1,4 @@
 import React from 'react';
-import PUTFriendsForm from './PUTFriendsForm';
 
 
 const FriendsList = props => {
@@ -12,7 +11,7 @@ const FriendsList = props => {
                         <p>{friend.name}</p>
                         <p>{friend.age}</p>
                         <p>{friend.email}</p>
-                        <PUTFriendsForm updateFriend={props.updateFriend}/>
+                        <button onClick={e => props.setUpdateFriend(e, friend)}>Update</button>
                     </div>
                 )
             })}
